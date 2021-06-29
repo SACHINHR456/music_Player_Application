@@ -1,0 +1,5 @@
+package com.te.musicPlayer.config;
+
+public class EntityManagerFActoryConfig {
+
+}

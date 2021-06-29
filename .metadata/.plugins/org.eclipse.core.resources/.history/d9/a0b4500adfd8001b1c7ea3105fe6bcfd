@@ -1,0 +1,5 @@
+package com.te.musicPlayer.dao;
+
+public class SongsDAO {
+
+}

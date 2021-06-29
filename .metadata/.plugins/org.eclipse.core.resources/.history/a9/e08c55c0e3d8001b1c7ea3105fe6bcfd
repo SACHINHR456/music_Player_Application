@@ -1,0 +1,36 @@
+package com.te.musicPlayer.cntroller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.te.musicPlayer.beans.SongResponse;
+import com.te.musicPlayer.beans.Songs;
+import com.te.musicPlayer.service.SongService;
+
+@RestController
+public class SongController {
+
+	@Autowired
+	private SongService service;
+	
+	@GetMapping(path = "/getAllSongs", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	public SongResponse getAllResponse() {
+		SongResponse response = new SongResponse();
+		List<Songs> infoBeans = service.getAllSongs();
+
+		if (infoBeans != null) {
+			response.setStatus(200);
+			response.setMessage("success");
+			response.setSongList(infoBeans);
+		} else {
+			response.setStatus(400);
+			response.setMessage("Datas not found");
+		}
+
+		return response;
+	}
+}
